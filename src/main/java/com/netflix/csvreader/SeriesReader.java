@@ -1,13 +1,12 @@
 package com.netflix.csvreader;
 
+import com.netflix.App;
 import com.netflix.models.Season;
 import com.netflix.models.Series;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -18,13 +17,8 @@ public class SeriesReader extends CSVReader {
         super(currentFile, separator);
         this.series = new ArrayList<>();
     }
-    public SeriesReader(String inputFilePath, char separator) {
-        super(inputFilePath, separator);
-        this.series = new ArrayList<>();
-    }
 
     public List<Series> getAllSeries() {
-        // Load each episode
         BufferedReader br = this.processInputFile();
 
         String line = null;
@@ -48,38 +42,19 @@ public class SeriesReader extends CSVReader {
             }
 
             String[] genres = this.parseLine(fields[2].trim(), ',');
+            String[] genresTrimmmed = Arrays.stream(genres).map(String::trim).toArray(String[]::new);
+
             Float rating = Float.valueOf(fields[3].trim().replace(',', '.'));
 
             String[] seasonEpisodes = fields[4].trim().split(",");
 
             File mediaSrc = new File("./assets/media");
 
-            File imgSrc = new File("./assets/series-imgs/" + title + ".jpg");
-            if (!imgSrc.exists()) {
-                System.out.println("File not found - series - image: " + title);
-            }
+            InputStream imgSrc = App.class.getResourceAsStream("assets/imgs/series/" + title + ".jpg");
 
-            /**
-             * [TODO] Make a season class for each season.
-             * Make episode class for each episode in that season.
-             * Put respective episode class in each season class.
-             * Put all season class in series class.
-             * Add series class to this.series.
-             *
-             * Maybe need a addEpisode method in season class
-             * And a addSeason in series class to make it work.
-             */
+            Series series = new Series(title, genresTrimmmed, rating, mediaSrc, imgSrc, startDate, endDate);
 
-            Series series = new Series(title, startDate, endDate);
-
-            //public Series(HashMap<String, Date> duration, Date start, Date end, HashMap<Integer, Season> seasons, HashMap<Integer, Episode> episodes) {
-
-            // ["1-13", "2-13", "3-13"]
             for(String se : seasonEpisodes){
-                // se = "1-13".split(-)
-                // String[] array = [" 1", " 13"]
-                // array[1]
-                // Integer.valueof(array[1])
                 Integer seasonNumber = Integer.valueOf(se.split("-")[0].trim());
                 Integer episodesCount = Integer.valueOf(se.split("-")[1].trim());
                 Season season = new Season(seasonNumber, episodesCount);

@@ -2,6 +2,7 @@ package com.netflix.models;
 
 import java.io.File;
 import java.io.InputStream;
+import java.util.Arrays;
 
 public abstract class Media {
     private String title;
@@ -24,6 +25,12 @@ public abstract class Media {
 
     public String[] getGenre() {
         return genre;
+    }
+
+    public Boolean inGenre(String match) {
+        if (match.equals("All")) return true;
+        System.out.println("Check if " + match + " is in");
+        return Arrays.asList(this.genre).contains(match.trim());
     }
 
     public Float getRating() {

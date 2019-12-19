@@ -40,27 +40,29 @@
                <children>
                   <FlowPane hgap="5.0" vgap="5.0" HBox.hgrow="ALWAYS">
                      <children>
-                        <RadioButton mnemonicParsing="false" selected="true" text="All">
+                        <RadioButton mnemonicParsing="false" onAction="#filter" selected="true" text="All">
                            <toggleGroup>
                               <ToggleGroup fx:id="genre" />
                            </toggleGroup>
                         </RadioButton>
-                        <RadioButton mnemonicParsing="false" text="Adventure" toggleGroup="$genre" />
-                        <RadioButton mnemonicParsing="false" text="Action" toggleGroup="$genre" />
-                        <RadioButton mnemonicParsing="false" text="Biography" toggleGroup="$genre" />
-                        <RadioButton mnemonicParsing="false" text="Comedy" toggleGroup="$genre" />
-                        <RadioButton mnemonicParsing="false" text="Crime" toggleGroup="$genre" />
-                        <RadioButton mnemonicParsing="false" text="Drama" toggleGroup="$genre" />
-                        <RadioButton mnemonicParsing="false" text="Fantasy" toggleGroup="$genre" />
-                        <RadioButton mnemonicParsing="false" text="History" toggleGroup="$genre" />
-                        <RadioButton mnemonicParsing="false" text="Horror" toggleGroup="$genre" />
-                        <RadioButton mnemonicParsing="false" text="Mystery" toggleGroup="$genre" />
-                        <RadioButton mnemonicParsing="false" text="Romance" toggleGroup="$genre" />
-                        <RadioButton mnemonicParsing="false" text="Sci-fi" toggleGroup="$genre" />
-                        <RadioButton mnemonicParsing="false" text="Talk-show" toggleGroup="$genre" />
-                        <RadioButton mnemonicParsing="false" text="Thriller" toggleGroup="$genre" />
-                        <RadioButton mnemonicParsing="false" text="War" toggleGroup="$genre" />
-                        <RadioButton mnemonicParsing="false" text="Western" toggleGroup="$genre" />
+                        <RadioButton mnemonicParsing="false" onAction="#filter" text="Adventure" toggleGroup="$genre" />
+                        <RadioButton mnemonicParsing="false" onAction="#filter" text="Action" toggleGroup="$genre" />
+                        <RadioButton mnemonicParsing="false" onAction="#filter" text="Biography" toggleGroup="$genre" />
+                        <RadioButton mnemonicParsing="false" onAction="#filter" text="Comedy" toggleGroup="$genre" />
+                        <RadioButton mnemonicParsing="false" onAction="#filter" text="Crime" toggleGroup="$genre" />
+                        <RadioButton mnemonicParsing="false" onAction="#filter" text="Drama" toggleGroup="$genre" />
+                        <RadioButton mnemonicParsing="false" onAction="#filter" text="Fantasy" toggleGroup="$genre" />
+                        <RadioButton mnemonicParsing="false" onAction="#filter" text="History" toggleGroup="$genre" />
+                        <RadioButton mnemonicParsing="false" onAction="#filter" text="Horror" toggleGroup="$genre" />
+                        <RadioButton mnemonicParsing="false" onAction="#filter" text="Music" toggleGroup="$genre" />
+                        <RadioButton mnemonicParsing="false" onAction="#filter" text="Musical" toggleGroup="$genre" />
+                        <RadioButton mnemonicParsing="false" onAction="#filter" text="Mystery" toggleGroup="$genre" />
+                        <RadioButton mnemonicParsing="false" onAction="#filter" text="Romance" toggleGroup="$genre" />
+                        <RadioButton mnemonicParsing="false" onAction="#filter" text="Sci-fi" toggleGroup="$genre" />
+                        <RadioButton mnemonicParsing="false" onAction="#filter" text="Talk-show" toggleGroup="$genre" />
+                        <RadioButton mnemonicParsing="false" onAction="#filter" text="Thriller" toggleGroup="$genre" />
+                        <RadioButton mnemonicParsing="false" onAction="#filter" text="War" toggleGroup="$genre" />
+                        <RadioButton mnemonicParsing="false" onAction="#filter" text="Western" toggleGroup="$genre" />
                      </children>
                   </FlowPane>
                </children>

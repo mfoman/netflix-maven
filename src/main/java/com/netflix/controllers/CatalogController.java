@@ -2,31 +2,53 @@ package com.netflix.controllers;
 
 import com.netflix.App;
 import com.netflix.csvreader.MovieReader;
+import com.netflix.csvreader.SeriesReader;
+import com.netflix.models.Media;
 import com.netflix.models.Movie;
+import com.netflix.models.Series;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
-import java.net.URISyntaxException;
-import java.net.URL;
-import java.util.List;
 
 public class CatalogController {
 
     @FXML
     public FlowPane list;
+    public ToggleGroup genre;
+    public ToggleGroup type;
 
     @FXML
     public void initialize() {
+        this.addMovies(this.getFilter());
+    }
+
+    @FXML
+    public void filter() {
+        RadioButton btn = (RadioButton) this.type.getSelectedToggle();
+        this.clearList();
+
+        if (btn.getText().equals("Movie")) {
+            this.addMovies(this.getFilter());
+        } else {
+            this.addSeries(this.getFilter());
+        }
+    }
+
+    public void addMovies(String filter) {
         MovieReader reader = new MovieReader(App.class.getResourceAsStream("assets/film.txt"), ';');
 
         for (Movie m : reader.getAllMovies()) {
+            if (!m.inGenre(filter)) continue;
+
             FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("views/media.fxml"));
 
             VBox movie = null;
@@ -50,23 +72,59 @@ public class CatalogController {
         }
     }
 
+    public void addSeries(String filter) {
+        SeriesReader reader = new SeriesReader(App.class.getResourceAsStream("assets/serier.txt"), ';');
+
+        for (Series s : reader.getAllSeries()) {
+            if (!s.inGenre(filter)) continue;
+
+            FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("views/media.fxml"));
+
+            VBox series = null;
+
+            try {
+                series = fxmlLoader.load();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            Label lbl = (Label) series.lookup("#title");
+            lbl.setText(s.getTitle());
+
+            ImageView img = (ImageView) series.lookup("#img");
+            Image image = null;
+
+            image = new Image(s.getImageSrc());
+
+            img.setImage(image);
+            this.list.getChildren().add(series);
+        }
+    }
     @FXML
     public void loginClicked() {
         System.out.println("login clicked");
     }
 
+    public String getFilter() {
+        RadioButton btn = (RadioButton) this.genre.getSelectedToggle();
+        return btn.getText();
+    }
+
     @FXML
     public void movieSelect() {
+        this.clearList();
+        this.addMovies(this.getFilter());
         System.out.println("movies selected");
     }
 
     @FXML
     public void seriesSelect() {
+        this.clearList();
+        this.addSeries(this.getFilter());
         System.out.println("series selected");
     }
 
-    @FXML
-    private void switchToSecondary() throws IOException {
-        App.setRoot("secondary");
+    public void clearList() {
+        this.list.getChildren().clear();
     }
 }

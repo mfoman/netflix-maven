@@ -7,8 +7,10 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.reflect.Array;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -38,6 +40,7 @@ public class MovieReader extends CSVReader {
 
             String[] fields = this.parseLine(line, ';');
             String[] genres = this.parseLine(fields[2].trim(), ',');
+            String[] genresTrimmmed = Arrays.stream(genres).map(String::trim).toArray(String[]::new);
 
             String title = fields[0].trim();
             Date date = new Date(Integer.valueOf(fields[1].trim()));
@@ -47,7 +50,7 @@ public class MovieReader extends CSVReader {
 
             InputStream imgSrc = App.class.getResourceAsStream("assets/imgs/movies/" + title + ".jpg");
 
-            this.movies.add(new Movie(title, date, genres, rating, mediaSrc, imgSrc));
+            this.movies.add(new Movie(title, date, genresTrimmmed, rating, mediaSrc, imgSrc));
         }
 
         return this.movies;

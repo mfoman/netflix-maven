@@ -1,7 +1,9 @@
 package com.netflix.csvreader;
 
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
+import java.util.Objects;
 
 /**
  * [TODO]
@@ -33,22 +35,10 @@ public class CSVReader {
     }
 
     public BufferedReader processInputFile() {
-        try {
-/*
-            return new BufferedReader(new FileReader(this.currentFile));
-*/
-            // Support utf8
-            return new BufferedReader(
-                    new InputStreamReader(
-                            this.streamFile,
-                            // new FileInputStream(this.currentFile),
-                            "UTF8"
-                    )
-            );
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
-
-        return null;
+        /*
+                    return new BufferedReader(new FileReader(this.currentFile));
+        */
+        // Support utf8
+        return new BufferedReader(new InputStreamReader(Objects.requireNonNull(this.streamFile), StandardCharsets.UTF_8));
     }
 }
