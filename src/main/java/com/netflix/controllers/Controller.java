@@ -1,5 +1,6 @@
 package com.netflix.controllers;
 
+import com.netflix.App;
 import com.netflix.csvreader.MovieReader;
 import com.netflix.models.Movie;
 import javafx.event.ActionEvent;
@@ -15,6 +16,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -67,12 +69,12 @@ public class Controller {
         BorderPane pane = new BorderPane();
         VBox filmv = new VBox();
         ListView listFilm = new ListView();
-        MovieReader mr = new MovieReader("./assets/film.txt", ';');
+        InputStream inputStream = App.class.getResourceAsStream("assets/film.txt");
+        MovieReader mr = new MovieReader(inputStream, ';');
         List<Movie> mlist = mr.getAllMovies();
         ArrayList<String> titlelist = new ArrayList<>();
         for(Movie movie:mlist){
             titlelist.add(movie.getTitle());
-
         }
 
         listFilm.getItems().add(titlelist);
@@ -84,11 +86,8 @@ public class Controller {
         Stage stage1 = new Stage();
         stage1.setTitle("Film");
 
-
         stage1.setScene(new Scene(root));
         stage1.show();
-
-
     }
 
     @FXML
@@ -96,7 +95,6 @@ public class Controller {
         BorderPane pane2 = new BorderPane();
         VBox serier1 = new VBox();
         ListView listserier = new ListView();
-
 
         serier1.getChildren().addAll(listserier);
         pane2.getChildren().addAll(serier1);
@@ -106,10 +104,7 @@ public class Controller {
         Stage stage2 = new Stage();
         stage2.setTitle("Serier");
 
-
         stage2.setScene(new Scene(root2));
         stage2.show();
-
-
     }
 }

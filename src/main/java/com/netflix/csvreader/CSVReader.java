@@ -16,7 +16,12 @@ import java.util.HashMap;
 public class CSVReader {
     private char separator;
     private File currentFile;
-    private HashMap<String, HashMap> results;
+    private InputStream streamFile = null;
+
+    public CSVReader(InputStream currentFile, char separator) {
+        this.streamFile = currentFile;
+        this.separator = separator;
+    }
 
     public CSVReader(String inputFilePath, char separator) {
         this.currentFile = new File(inputFilePath);
@@ -32,15 +37,15 @@ public class CSVReader {
 /*
             return new BufferedReader(new FileReader(this.currentFile));
 */
-
             // Support utf8
             return new BufferedReader(
                     new InputStreamReader(
-                            new FileInputStream(this.currentFile),
+                            this.streamFile,
+                            // new FileInputStream(this.currentFile),
                             "UTF8"
                     )
             );
-        } catch (FileNotFoundException | UnsupportedEncodingException e) {
+        } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
 

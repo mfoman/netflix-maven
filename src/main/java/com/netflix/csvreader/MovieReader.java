@@ -1,10 +1,12 @@
 package com.netflix.csvreader;
 
+import com.netflix.App;
 import com.netflix.models.Movie;
 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -12,6 +14,10 @@ import java.util.List;
 public class MovieReader extends CSVReader {
     private List<Movie> movies;
 
+    public MovieReader(InputStream inputFilePath, char separator) {
+        super(inputFilePath, separator);
+        this.movies = new ArrayList<>();
+    }
     public MovieReader(String inputFilePath, char separator) {
         super(inputFilePath, separator);
         this.movies = new ArrayList<>();
@@ -38,7 +44,8 @@ public class MovieReader extends CSVReader {
 
             File mediaSrc = new File("./assets/media");
 
-            File imgSrc = new File("./assets/films-imgs/" + title + ".jpg");
+            File imgSrc = new File(String.valueOf(App.class.getResource("assets/imgs/movies/" + title + ".jpg")));
+
             if (!imgSrc.exists()) {
                 System.out.println("File not found - image" + title);
             }
