@@ -7,6 +7,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -44,7 +45,12 @@ public class MovieReader extends CSVReader {
 
             File mediaSrc = new File("./assets/media");
 
-            File imgSrc = new File(String.valueOf(App.class.getResource("assets/imgs/movies/" + title + ".jpg")));
+            File imgSrc = null;
+            try {
+                imgSrc = new File(App.class.getResource("assets/imgs/movies/" + title + ".jpg").toURI());
+            } catch (URISyntaxException e) {
+                e.printStackTrace();
+            }
 
             if (!imgSrc.exists()) {
                 System.out.println("File not found - image" + title);

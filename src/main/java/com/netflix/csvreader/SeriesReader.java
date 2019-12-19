@@ -6,6 +6,7 @@ import com.netflix.models.Series;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -13,6 +14,10 @@ import java.util.List;
 public class SeriesReader extends CSVReader {
     private List<Series> series;
 
+    public SeriesReader(InputStream currentFile, char separator) {
+        super(currentFile, separator);
+        this.series = new ArrayList<>();
+    }
     public SeriesReader(String inputFilePath, char separator) {
         super(inputFilePath, separator);
         this.series = new ArrayList<>();
@@ -51,7 +56,7 @@ public class SeriesReader extends CSVReader {
 
             File imgSrc = new File("./assets/series-imgs/" + title + ".jpg");
             if (!imgSrc.exists()) {
-                System.out.println("File not found - image" + title);
+                System.out.println("File not found - series - image: " + title);
             }
 
             /**

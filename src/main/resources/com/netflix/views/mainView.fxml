@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.netflix.controllers.MainController">
+    <center>
+        <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+            <children>
+                <ListView fx:id="listView1" onMouseClicked="#handleMouseClick" prefHeight="200.0" prefWidth="200.0" />
+                <ListView fx:id="listView2" prefHeight="200.0" prefWidth="200.0" />
+                <ListView fx:id="listView3" prefHeight="200.0" prefWidth="200.0" />
+                <ListView fx:id="listView4" prefHeight="200.0" prefWidth="200.0" />
+            </children>
+        </VBox>
+    </center>
+    <top>
+        <ToolBar prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #000000;" BorderPane.alignment="CENTER">
+            <items>
+                <Button mnemonicParsing="false" onAction="#handleloginbutton" style="-fx-background-color: #F8F8FF;" text="Log in" />
+                <MenuButton mnemonicParsing="false" style="-fx-background-color: #F8F8FF;" text="Film">
+                    <items>
+                        <MenuItem mnemonicParsing="false" onAction="#seActionfilm" text="Action" />
+                        <MenuItem mnemonicParsing="false" text="Adventure" />
+                        <MenuItem mnemonicParsing="false" text="Biography" />
+                        <MenuItem mnemonicParsing="false" text="Crime" />
+                        <MenuItem mnemonicParsing="false" text="Comedy" />
+                        <MenuItem mnemonicParsing="false" text="Drama" />
+                        <MenuItem mnemonicParsing="false" text="Family" />
+                        <MenuItem mnemonicParsing="false" text="Fantasy" />
+                        <MenuItem mnemonicParsing="false" text="Film-Noir" />
+                        <MenuItem mnemonicParsing="false" text="History" />
+                        <MenuItem mnemonicParsing="false" text="Horror" />
+                        <MenuItem mnemonicParsing="false" text="Music" />
+                        <MenuItem mnemonicParsing="false" text="Musical" />
+                        <MenuItem mnemonicParsing="false" text="Mystery" />
+                        <MenuItem mnemonicParsing="false" text="Romance" />
+                        <MenuItem mnemonicParsing="false" text="Sci-fi" />
+                        <MenuItem mnemonicParsing="false" text="Sport" />
+                        <MenuItem mnemonicParsing="false" text="Thriller" />
+                        <MenuItem mnemonicParsing="false" text="War" />
+                        <MenuItem mnemonicParsing="false" text="Western" />
+                    </items>
+                </MenuButton>
+                <MenuButton mnemonicParsing="false" style="-fx-background-color: #F8F8FF;" text="Serier">
+                    <items>
+                        <MenuItem mnemonicParsing="false" onAction="#seSerier" text="Serier" />
+                    </items>
+                </MenuButton>
+                <Button mnemonicParsing="false" style="-fx-background-color: #F8F8FF;" text="Min liste" />
+                <Region prefHeight="0.0" prefWidth="200.0" />
+                <Region prefHeight="0.0" prefWidth="200.0" />
+                <Region prefHeight="0.0" prefWidth="200.0" />
+                <Region prefHeight="0.0" prefWidth="200.0" />
+                <TextField promptText="Search" />
+            </items>
+        </ToolBar>
+    </top>
+</BorderPane>
