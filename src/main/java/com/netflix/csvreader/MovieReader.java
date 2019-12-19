@@ -45,16 +45,7 @@ public class MovieReader extends CSVReader {
 
             File mediaSrc = new File("./assets/media");
 
-            File imgSrc = null;
-            try {
-                imgSrc = new File(App.class.getResource("assets/imgs/movies/" + title + ".jpg").toURI());
-            } catch (URISyntaxException e) {
-                e.printStackTrace();
-            }
-
-            if (!imgSrc.exists()) {
-                System.out.println("File not found - image" + title);
-            }
+            InputStream imgSrc = App.class.getResourceAsStream("assets/imgs/movies/" + title + ".jpg");
 
             this.movies.add(new Movie(title, date, genres, rating, mediaSrc, imgSrc));
         }

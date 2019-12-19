@@ -43,7 +43,7 @@ public class CatalogController {
             ImageView img = (ImageView) movie.lookup("#img");
             Image image = null;
 
-            image = new Image(m.getImageSrc().toURI().toString());
+            image = new Image(m.getImageSrc());
 
             img.setImage(image);
             this.list.getChildren().add(movie);

@@ -134,7 +134,7 @@ public class MainController {
 
         List<Image> listOfImages = FXCollections.observableArrayList();
         for(Movie movie:mlist){
-            listOfImages.add(new Image(movie.getImageSrc().toURI().toString()));
+            listOfImages.add(new Image(movie.getImageSrc()));
         }
 
         listView1.setCellFactory(param -> new ListCell<String>() {
@@ -147,7 +147,7 @@ public class MainController {
                         setText(null);
                         setGraphic(null);
                     } else {
-                        imageView.setImage(new Image(movie.getImageSrc().toURI().toString()));
+                        imageView.setImage(new Image(movie.getImageSrc()));
                         setText(name);
                         setGraphic(imageView);
                     }

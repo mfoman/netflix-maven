@@ -1,6 +1,7 @@
 package com.netflix.models;
 
 import java.io.File;
+import java.io.InputStream;
 import java.util.Date;
 
 public class Movie extends Media {
@@ -10,7 +11,7 @@ public class Movie extends Media {
         return release;
     }
 
-    public Movie(String title, Date release, String[] genres, Float rating, File mediaSrc, File imgSrc) {
+    public Movie(String title, Date release, String[] genres, Float rating, File mediaSrc, InputStream imgSrc) {
         super(title, genres, rating, mediaSrc, imgSrc);
         this.release = release;
     }

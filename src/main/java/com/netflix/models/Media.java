@@ -1,15 +1,16 @@
 package com.netflix.models;
 
 import java.io.File;
+import java.io.InputStream;
 
 public abstract class Media {
     private String title;
     private String[] genre;
     private Float rating;
-    private File imageSrc;
+    private InputStream imageSrc;
     private File mediaSrc;
 
-    public Media(String title, String[] genres, Float rating, File mediaSrc, File imgSrc) {
+    public Media(String title, String[] genres, Float rating, File mediaSrc, InputStream imgSrc) {
         this.title = title;
         this.genre = genres;
         this.rating = rating;
@@ -33,7 +34,7 @@ public abstract class Media {
         return mediaSrc;
     }
 
-    public File getImageSrc() {
+    public InputStream getImageSrc() {
         return imageSrc;
     }
 
