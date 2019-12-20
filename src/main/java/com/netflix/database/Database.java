@@ -1,3 +1,8 @@
+/**
+ * A little side quest to save and load users and objects on the filesystem.
+ * It works, but we didn't have time to implement it because I had to rework
+ * the entire frontend. Count this as an easter egg.
+ */
 package com.netflix.database;
 
 import java.io.*;
@@ -9,7 +14,6 @@ public class Database {
 
     public Database(String storagePath) {
         this.storagePath = Paths.get(storagePath);
-        //System.out.println(this.storagePath.toString());
     }
 
     public void set(String key, Object obj) {

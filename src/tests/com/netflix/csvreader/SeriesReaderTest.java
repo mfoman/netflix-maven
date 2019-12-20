@@ -1,25 +1,25 @@
 package com.netflix.csvreader;
 
 import com.netflix.App;
-import com.netflix.models.Movie;
+import com.netflix.models.Series;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class MovieReaderTest {
+class SeriesReaderTest {
 
     @Test
-    void getAllMovies() {
-        List<Movie> s = null;
-
+    void getAllSeries() {
+        List<Series> s = null;
+        
         try {
-            s = new MovieReader(App.class.getResourceAsStream("assets/film.txt")).getAllMovies();
+            s = new SeriesReader(App.class.getResourceAsStream("assets/serier.txt")).getAllSeries();
         } catch (NoImageException e) {
             e.printStackTrace();
         }
-
+        
         assertEquals(100, s.size());
     }
 }

@@ -28,8 +28,7 @@ public abstract class Media {
     }
 
     public Boolean inGenre(String match) {
-        if (match.equals("All")) return true;
-        System.out.println("Check if " + match + " is in");
+        if (match.equals("All")) return true; // This makes sure that every genre is included
         return Arrays.asList(this.genre).contains(match.trim());
     }
 

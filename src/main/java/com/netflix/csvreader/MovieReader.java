@@ -7,8 +7,6 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.lang.reflect.Array;
-import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
@@ -17,16 +15,12 @@ import java.util.List;
 public class MovieReader extends CSVReader {
     private List<Movie> movies;
 
-    public MovieReader(InputStream inputFilePath, char separator) {
-        super(inputFilePath, separator);
-        this.movies = new ArrayList<>();
-    }
-    public MovieReader(String inputFilePath, char separator) {
-        super(inputFilePath, separator);
+    public MovieReader(InputStream inputFilePath) {
+        super(inputFilePath);
         this.movies = new ArrayList<>();
     }
 
-    public List<Movie> getAllMovies() {
+    public List<Movie> getAllMovies() throws NoImageException {
         BufferedReader br = this.processInputFile();
 
         String line = null;
@@ -49,6 +43,7 @@ public class MovieReader extends CSVReader {
             File mediaSrc = new File("./assets/media");
 
             InputStream imgSrc = App.class.getResourceAsStream("assets/imgs/movies/" + title + ".jpg");
+            if (imgSrc == null) throw new NoImageException("Can't find corresponding image in resources.");
 
             this.movies.add(new Movie(title, date, genresTrimmmed, rating, mediaSrc, imgSrc));
         }

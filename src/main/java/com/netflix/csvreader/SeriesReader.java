@@ -13,12 +13,12 @@ import java.util.List;
 public class SeriesReader extends CSVReader {
     private List<Series> series;
 
-    public SeriesReader(InputStream currentFile, char separator) {
-        super(currentFile, separator);
+    public SeriesReader(InputStream currentFile) {
+        super(currentFile);
         this.series = new ArrayList<>();
     }
 
-    public List<Series> getAllSeries() {
+    public List<Series> getAllSeries() throws NoImageException {
         BufferedReader br = this.processInputFile();
 
         String line = null;
@@ -51,6 +51,7 @@ public class SeriesReader extends CSVReader {
             File mediaSrc = new File("./assets/media");
 
             InputStream imgSrc = App.class.getResourceAsStream("assets/imgs/series/" + title + ".jpg");
+            if (imgSrc == null) throw new NoImageException("Can't find corresponding image in resources.");
 
             Series series = new Series(title, genresTrimmmed, rating, mediaSrc, imgSrc, startDate, endDate);
 
